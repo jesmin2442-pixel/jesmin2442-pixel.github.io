@@ -1,0 +1,663 @@
+@font-face {
+  font-family: "Rubik";
+  src: url("../fonts/rubik-bold.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* 기본 설정과 색상 */
+:root {
+  --forest: #123029;
+  --navy: #193240;
+  --paper: #f0dac0;
+  --cream: #f2dfc5;
+  --ink: #17120c;
+  --button: #17120a;
+  --max-width: 1200px;
+  --page-gutter: 32px;
+  --body-font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", sans-serif;
+  --heading-font: "Rubik", var(--body-font);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--forest) radial-gradient(ellipse at 50% 45%, #193930, transparent 78%) no-repeat top / 100% 860px;
+  color: var(--ink);
+  font: 700 16px/1.5 var(--body-font);
+  word-break: keep-all;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: min(var(--max-width), calc(100% - 2 * var(--page-gutter)));
+  margin: 0 auto;
+}
+
+/* 헤더와 로고 */
+.site-header {
+  min-height: 100px;
+  padding: 0 8px;
+  display: grid;
+  grid-template-columns: max-content max-content 1fr;
+  align-items: center;
+  gap: clamp(22px, 4vw, 51px);
+  color: var(--cream);
+}
+
+.svg-symbols {
+  position: absolute;
+  overflow: hidden;
+}
+
+.wordmark {
+  --fish-detail-color: var(--forest);
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(32px, 3.6vw, 45px);
+  line-height: 1.15;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+.wordmark span {
+  -webkit-text-stroke: 0.035em currentColor;
+}
+
+.wordmark svg {
+  width: 1.6em;
+  height: auto;
+  transform: rotate(-4deg);
+}
+
+.fish-body {
+  fill: var(--fish-fill, currentColor);
+  stroke: currentColor;
+  stroke-width: var(--fish-stroke, 1.4);
+  stroke-linejoin: round;
+}
+
+.fish-eye {
+  fill: var(--fish-detail-color);
+}
+
+.fish-detail {
+  fill: none;
+  stroke: var(--fish-detail-color);
+  stroke-width: 2.9;
+  stroke-linecap: round;
+}
+
+.main-nav, .header-actions, .footer-nav, .social-links {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.main-nav {
+  gap: clamp(22px, 4.3vw, 56px);
+  font-size: clamp(16px, 1.76vw, 22px);
+}
+
+.main-nav a:hover, .footer-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.header-actions {
+  gap: clamp(16px, 2.8vw, 36px);
+  justify-self: end;
+  margin-right: clamp(0px, calc(100vw - 1150px), 1px);
+  font-size: clamp(15px, 1.6vw, 20px);
+}
+
+.search-link {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-width: clamp(130px, 14vw, 176px);
+  min-height: 47px;
+  padding: 0 14px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+}
+
+.search-icon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.search-icon::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  bottom: -3px;
+  width: 8px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.cart-link {
+  position: relative;
+  width: 42px;
+  height: 42px;
+}
+
+.cart-link svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: grid;
+  width: 23px;
+  height: 23px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--forest);
+  font: 700 13px/1 var(--heading-font);
+}
+
+/* 메인 배너 */
+.hero {
+  padding: 2px 0 55px;
+  color: var(--cream);
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  border-radius: clamp(13px, 2.6vw, 32px);
+  object-fit: cover;
+}
+
+.hero-copy {
+  padding-top: 12px;
+  text-align: center;
+}
+
+.hero-copy h1 {
+  margin-bottom: 22px;
+  font-size: clamp(16px, 1.84vw, 23px);
+  line-height: 1.5;
+  transform: translateY(6px);
+}
+
+.pill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--button);
+  color: var(--cream);
+  text-align: center;
+}
+
+.hero-button {
+  min-width: 272px;
+  min-height: 52px;
+  font-size: 22px;
+  transform: translateY(12px);
+}
+
+.hero-button:hover {
+  background: #302217;
+}
+
+/* 공통 섹션 제목과 카드 */
+.section-pad {
+  padding: 42px 0 46px;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.eyebrow {
+  font: 700 clamp(13px, 1.36vw, 17px)/26px var(--heading-font);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.section-heading h2 {
+  font: 700 clamp(42px, 6.1vw, 76px)/1.13 var(--heading-font);
+  letter-spacing: -0.012em;
+  -webkit-text-stroke: 0.022em currentColor;
+}
+
+.section-subtitle {
+  font-size: clamp(17px, 2vw, 25px);
+  line-height: 1.45;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--grid-gap);
+}
+
+.card {
+  min-width: 0;
+}
+
+.card > img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* What’s new? 소식 카드 */
+.news-section, .site-footer {
+  background: var(--paper) radial-gradient(ellipse at 54% 42%, #f4e0c9, transparent 82%);
+}
+
+.news-section .container {
+  --max-width: 1138px;
+  --page-gutter: clamp(20px, 4vw, 48px);
+}
+
+.news-grid {
+  --grid-gap: clamp(24px, 4.3vw, 54px);
+}
+
+.news-card img {
+  aspect-ratio: 11 / 10;
+  border: 1px solid #765d44;
+  border-radius: 4px;
+}
+
+.news-card h3 {
+  margin-top: 10px;
+  font-size: clamp(16px, 1.84vw, 23px);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+/* Pick up 메뉴 카드 */
+.pickup-section {
+  padding: 40px 0 60px;
+  background: var(--navy) radial-gradient(ellipse at 55% 55%, #1c3948, #172f3c 86%);
+  color: var(--cream);
+}
+
+.pickup-section .container {
+  --max-width: 1158px;
+  --page-gutter: clamp(20px, 3.4vw, 40px);
+}
+
+.pickup-section .section-heading {
+  margin-bottom: 28px;
+}
+
+.pickup-section .section-heading h2 {
+  line-height: 1.05;
+}
+
+.product-grid {
+  --grid-gap: clamp(20px, 3.4vw, 42px);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-card img {
+  aspect-ratio: 69 / 50;
+  border: 1px solid #25221a;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  margin-top: 5px;
+  font-size: clamp(14px, 1.52vw, 19px);
+  line-height: 1.36;
+  overflow-wrap: anywhere;
+}
+
+.product-price {
+  margin-bottom: 8px;
+  font-size: clamp(15px, 1.68vw, 21px);
+  line-height: 1.26;
+}
+
+.product-card .pill-button {
+  width: 76%;
+  min-height: 42px;
+  margin-top: auto;
+  font-size: clamp(14px, 1.45vw, 18px);
+}
+
+/* 푸터 */
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  min-height: 94px;
+  padding: 0 25px 0 17px;
+}
+
+.footer-inner .wordmark {
+  --fish-fill: none;
+  --fish-stroke: 3;
+  --fish-detail-color: currentColor;
+  justify-self: start;
+  color: var(--forest);
+  font-size: clamp(30px, 3.2vw, 40px);
+}
+
+.footer-nav {
+  gap: clamp(24px, 6vw, 76px);
+  font-size: clamp(16px, 1.7vw, 21px);
+}
+
+.social-links {
+  justify-self: end;
+  gap: clamp(13px, 2.5vw, 31px);
+  transform: translateX(8px);
+}
+
+.social-links a {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.social-links svg {
+  width: 29px;
+  height: 29px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.social-links .icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.social-links .icon-cut {
+  fill: var(--paper);
+  stroke: none;
+}
+
+.x-link {
+  font-size: 29px;
+  line-height: 1;
+}
+
+/* 태블릿과 모바일에서 카드를 두 열로 배치 */
+@media (max-width: 900px) {
+  :root {
+    --page-gutter: 24px;
+  }
+
+  .site-header {
+    min-height: 83px;
+    gap: 22px;
+  }
+
+  .main-nav {
+    gap: 23px;
+  }
+
+  .header-actions {
+    gap: 16px;
+  }
+
+  .news-section .container, .pickup-section .container {
+    --page-gutter: 24px;
+  }
+
+  .card-grid {
+    --grid-gap: 26px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-inner {
+    padding: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --page-gutter: 16px;
+  }
+
+  .site-header {
+    min-height: 0;
+    grid-template-columns: max-content 1fr;
+    gap: 12px 8px;
+    padding: 14px 0 10px;
+  }
+
+  .wordmark {
+    gap: 5px;
+    font-size: 29px;
+  }
+
+  .main-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: center;
+    gap: 30px;
+    font-size: 15px;
+  }
+
+  .header-actions {
+    gap: 13px;
+    margin-right: 5px;
+    font-size: 13px;
+  }
+
+  .search-link {
+    min-width: 36px;
+    min-height: 34px;
+    padding: 0 10px 0 7px;
+  }
+
+  .search-label {
+    display: none;
+  }
+
+  .search-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .cart-link {
+    width: 29px;
+    height: 29px;
+  }
+
+  .cart-count {
+    top: -4px;
+    right: -5px;
+    width: 17px;
+    height: 17px;
+    font-size: 10px;
+  }
+
+  .hero {
+    padding: 12px 0 22px;
+  }
+
+  .hero-copy h1 {
+    margin-bottom: 12px;
+  }
+
+  .hero-button {
+    min-width: 174px;
+    min-height: 40px;
+    font-size: 15px;
+  }
+
+  .section-pad {
+    padding: 28px 0 32px;
+  }
+
+  .section-heading, .pickup-section .section-heading {
+    margin-bottom: 23px;
+  }
+
+  .news-section .container, .pickup-section .container {
+    --page-gutter: 16px;
+  }
+
+  .card-grid {
+    --grid-gap: 22px 16px;
+  }
+
+  .news-card h3 {
+    margin-top: 7px;
+    font-size: 14px;
+  }
+
+  .product-card .pill-button {
+    width: 90%;
+    min-height: 34px;
+    font-size: 13px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr auto;
+    gap: 15px 8px;
+    padding: 16px 0;
+  }
+
+  .footer-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .social-links a, .social-links svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .x-link {
+    font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* class11 Part 4의 메뉴 선택 영역 */
+.menu-choice {
+  margin-top: 42px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(242, 223, 197, 0.3);
+  text-align: center;
+}
+
+.menu-choice h3 {
+  font-size: clamp(20px, 2vw, 25px);
+}
+
+.menu-choice .menu-reset-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.menu-choice .choice-group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 720px;
+  margin: 18px auto 14px;
+}
+
+.menu-choice .choice-group button {
+  min-height: 46px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.menu-choice .choice-group button:hover {
+  background: #302217;
+}
+
+.menu-choice .choice-group button:focus-visible,
+.menu-choice .menu-reset-button:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 4px;
+}
+
+.menu-choice .scene-panel {
+  display: grid;
+  place-items: center;
+  row-gap: 12px;
+  min-height: 54px;
+}
+
+.menu-choice .scene-text,
+.menu-choice .menu-recommendation {
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.6;
+}
